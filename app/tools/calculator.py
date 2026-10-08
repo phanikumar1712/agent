@@ -1,0 +1,23 @@
+from langchain_core.tools import tool
+
+
+@tool
+def calculator(expression: str) -> str:
+    """
+    Calculate a mathematical expression.
+
+    Args:
+        expression: A valid mathematical expression.
+
+    Returns:
+        The calculated result.
+    """
+
+    try:
+        # Simple example only.
+        # For production, use a safe math parser instead of eval().
+        result = eval(expression, {"__builtins__": {}}, {})
+        return str(result)
+
+    except Exception as e:
+        return f"Calculation error: {str(e)}"
